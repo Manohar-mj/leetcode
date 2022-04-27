@@ -1,0 +1,13 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack=[]
+        l={")":"(","]":"[","}":"{"}
+        for p in s:
+            if p in l.values():
+                stack.append(p)
+            elif stack and l[p]==stack[-1]:
+                stack.pop()
+            else:
+                return False
+        return stack==[]
+        
