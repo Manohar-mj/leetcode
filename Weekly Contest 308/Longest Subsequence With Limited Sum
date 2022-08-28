@@ -1,0 +1,12 @@
+from bisect import bisect
+
+
+class Solution:
+    def answerQueries(self, nums: List[int], queries: List[int]) -> List[int]:
+        nums.sort()
+
+        pref = [0] * (len(nums) + 1)
+        for i, num in enumerate(nums):
+            pref[i + 1] = pref[i] + num
+
+        return [bisect(pref, query) - 1 for query in queries]
